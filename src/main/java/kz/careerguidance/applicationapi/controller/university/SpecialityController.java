@@ -34,8 +34,6 @@ public class SpecialityController {
 
     @PostMapping()
     public ResponseEntity<?> createSpeciality(
-//            @RequestPart("categoryImage") MultipartFile categoryImage,
-//            @RequestPart("image") MultipartFile image,
             @RequestBody @Valid SpecialityDto specialityDTO,
             BindingResult bindingResult) {
         specialityValidator.validate(specialityDTO, bindingResult);
@@ -45,18 +43,6 @@ public class SpecialityController {
         }
 
         Speciality speciality = convertToSpeciality(specialityDTO);
-
-        // todo: изменить
-//        try {
-//            speciality.setCategoryImage(categoryImage.getBytes());
-//        } catch (IOException e) {
-//            speciality.setCategoryImage(null);
-//        }
-//        try {
-//            speciality.setImage(image.getBytes());
-//        } catch (IOException e) {
-//            speciality.setImage(null);
-//        }
         return ResponseEntity.ok(specialitiesService.save(speciality));
     }
 
